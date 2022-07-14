@@ -22,8 +22,8 @@ def main(domain):
         #   B: 京ICP证030173号-1
         info = icp if '-' not in icp else icp.split('-')[0] if len(icp.split('-'))==2 else icp.split('-')[0]+'-'+icp.split('-')[1]
     except Exception as e:
-        print(e)
-        info = ''
+        print("[x] {} 没有搜索到对应的备案号".format(domain))
+        return
     print("[*] {} 对应的备案号为{}".format(domain, icp))
     if info:
         info_data = {
@@ -189,7 +189,6 @@ def main(domain):
                 domain_type = info_base['natureName']
                 domain_licence = info_base['mainLicence']
                 domain_web_licence = info_base['serviceLicence']
-                domain_site_name = info_base['serviceName']
                 domain_status = info_base['limitAccess']
                 domain_approve_date = info_base['updateRecordTime']
                 domain_owner = info_base['unitName']
@@ -201,7 +200,6 @@ def main(domain):
                     domain_content_approved = "无"
                 print("\n域名主办方：",domain_owner)
                 print("域名：",domain_name)
-                print("网站名称：",domain_site_name)
                 print("备案许可证号：",domain_licence)
                 print("网站备案号：",domain_web_licence)
                 print("域名类型：",domain_type)
